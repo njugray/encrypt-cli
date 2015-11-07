@@ -1,0 +1,23 @@
+{
+  "name": "encrypt-cli",
+  "version": "0.0.1",
+  "description": "node file encryption command line tools",
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "bin": {
+    "encrypt": "bin/encrypt"
+  },
+  "author": "njugray",
+  "repository": "njugray/encrypt-cli",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "crypto": "0.0.3"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ]
+}
