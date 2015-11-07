@@ -1,0 +1,34 @@
+var program = require('commander'),
+	fs = require('fs'),
+	Encryptor = require('./lib/encryptor');
+
+var filePath;
+program
+	.version('0.0.1')
+	.usage('[option] <path>')
+	.option('-e, --encrypt', '加密文件')
+	.option('-a, --algorithm <name>', '指定加密算法')
+	.option('-k, --key <key>', '指定加密密钥')
+	.option('-o, --output <output>', '指定加密密钥');
+
+program
+	.arguments('<path>')
+	.action(function(path) {
+		filePath = path;
+	})
+	.parse(process.argv);
+
+if(filePath && fs.existsSync(filePath)) {
+	var encrypt = program.encrypt;
+	var algorithm = program.algorithm || 'aes-256-cbc';
+	var key = program.key || 'default key';
+	var output = program.output;
+
+	if(encrypt) {
+		Encryptor.cipher(algorithm, key, filePath, output);
+	}else {
+		Encryptor.decipher(algorithm, key, filePath, output);
+	}
+}else {
+	console.log('目标文件不存在');
+}
